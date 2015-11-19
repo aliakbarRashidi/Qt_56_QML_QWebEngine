@@ -1,0 +1,11 @@
+.build*
+*build*.log
+build-*
+*.aps
+*.orig
+*.user
+*.pyc
+*.pyo
+*.sdf
+*.sublime-workspace
+Info.plist
