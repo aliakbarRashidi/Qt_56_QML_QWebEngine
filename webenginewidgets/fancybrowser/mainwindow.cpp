@@ -41,6 +41,7 @@
 #include <QtWidgets>
 #include <QtWebEngineWidgets>
 #include "mainwindow.h"
+#include "custompage.h"
 
 template<typename Arg, typename R, typename C>
 struct InvokeWrapper {
@@ -72,9 +73,13 @@ MainWindow::MainWindow(const QUrl& url)
     file.close();
 //! [1]
 
+    CustomPage *myPage = new CustomPage();
+
+
 //! [2]
     view = new QWebEngineView(this);
-    //view->settings()->setAttribute(QWebSettings::PluginsEnabled, true);
+    view->setPage(myPage);
+
     view->load(url);
     connect(view, SIGNAL(loadFinished(bool)), SLOT(adjustLocation()));
     connect(view, SIGNAL(titleChanged(QString)), SLOT(adjustTitle()));

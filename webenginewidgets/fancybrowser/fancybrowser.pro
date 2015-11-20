@@ -1,8 +1,10 @@
 QT      +=  webenginewidgets
 
-HEADERS =   mainwindow.h
+HEADERS =   mainwindow.h \
+    custompage.h
 SOURCES =   main.cpp \
-            mainwindow.cpp
+            mainwindow.cpp \
+    custompage.cpp
 RESOURCES = jquery.qrc
 
 # install
