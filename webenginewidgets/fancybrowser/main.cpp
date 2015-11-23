@@ -50,7 +50,9 @@ int main(int argc, char * argv[])
     if (argc > 1)
         url = QUrl::fromUserInput(argv[1]);
     else
-        url = QUrl("http://www.google.com/ncr");
+        url = QUrl("E:/work/html/empl/styles-conference/index.html");
+        //url = QUrl("E:/work/html/empl/styles-conference/index.html");
+        //url = QUrl("http://www.google.com/ncr");
     MainWindow *browser = new MainWindow(url);
     browser->show();
     return app.exec();

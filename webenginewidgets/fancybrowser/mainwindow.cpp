@@ -40,8 +40,12 @@
 
 #include <QtWidgets>
 #include <QtWebEngineWidgets>
+#include <QString>
 #include "mainwindow.h"
 #include "custompage.h"
+#include "customurlrequestinterceptor.h"
+#include "customurlschemehandler.h"
+
 
 template<typename Arg, typename R, typename C>
 struct InvokeWrapper {
@@ -73,7 +77,19 @@ MainWindow::MainWindow(const QUrl& url)
     file.close();
 //! [1]
 
-    CustomPage *myPage = new CustomPage();
+
+    QWebEngineProfile *weProfile = new QWebEngineProfile(this);
+    CustomUrlRequestInterceptor *urlRequestInterceptor = new CustomUrlRequestInterceptor();
+    CustomUrlSchemeHandler *urlSchemeHandler = new CustomUrlSchemeHandler(this);
+
+
+
+    weProfile->setRequestInterceptor(urlRequestInterceptor);
+    weProfile->removeAllUrlSchemeHandlers();
+    QByteArray scheme = QString::fromStdString("file").toUtf8();
+    weProfile->installUrlSchemeHandler(scheme, urlSchemeHandler);
+
+    CustomPage *myPage = new CustomPage(weProfile, this);
 
 
 //! [2]

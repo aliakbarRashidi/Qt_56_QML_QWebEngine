@@ -1,10 +1,16 @@
 QT      +=  webenginewidgets
 
 HEADERS =   mainwindow.h \
-    custompage.h
+    custompage.h \
+    customurlrequestinterceptor.h \
+    customurlschemehandler.h \
+    customurlrequestjob.h
 SOURCES =   main.cpp \
             mainwindow.cpp \
-    custompage.cpp
+    custompage.cpp \
+    customurlrequestinterceptor.cpp \
+    customurlschemehandler.cpp \
+    customurlrequestjob.cpp
 RESOURCES = jquery.qrc
 
 # install

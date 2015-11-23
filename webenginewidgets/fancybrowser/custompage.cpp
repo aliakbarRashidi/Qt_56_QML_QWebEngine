@@ -1,10 +1,10 @@
 #include "custompage.h"
 #include <QDebug>
 
-CustomPage::CustomPage()
+CustomPage::CustomPage(QWebEngineProfile *profile, QObject *parent) : QWebEnginePage(profile, parent)
 {
     qDebug() << "****** CustomPage::CustomPage *****";
-    connect(this, &QWebEnginePage::authenticationRequired, this, &CustomPage::myAuthenticationRequired);
+    //connect(this, &QWebEnginePage::authenticationRequired, this, &CustomPage::myAuthenticationRequired);
     connect(this, &QWebEnginePage::loadStarted, [](){qDebug()<<"loadStarted()";});
     connect(this, &QWebEnginePage::loadFinished, [](bool ok){qDebug()<<"loadFinished ok = "<< ok; });
     connect(this, &QWebEnginePage::urlChanged, [](QUrl url){qDebug()<<"urlChanged url = "<< url; });
@@ -13,10 +13,10 @@ CustomPage::CustomPage()
 }
 
 
-void CustomPage::myAuthenticationRequired(const QUrl & requestUrl, QAuthenticator * authenticator)
+/*void CustomPage::myAuthenticationRequired(const QUrl & requestUrl, QAuthenticator * authenticator)
 {
     qDebug() << "AuthenticationRequired url = " << requestUrl.toString();
-}
+}*/
 
 
 bool CustomPage::acceptNavigationRequest(const QUrl & url, NavigationType type, bool isMainFrame)
@@ -25,7 +25,10 @@ bool CustomPage::acceptNavigationRequest(const QUrl & url, NavigationType type, 
              << ";  NavigationType = " << type
              << "; isMainFrame = " << isMainFrame;
 
+
+
     return QWebEnginePage::acceptNavigationRequest(url, type, isMainFrame);
+    //return false;
 }
 
 
