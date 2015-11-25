@@ -3,20 +3,34 @@
 #include <QTimer>
 
 
-CustomDeviceReply::CustomDeviceReply()
+CustomDeviceReply::CustomDeviceReply(QByteArray &fileData)
+    : data(fileData), origLen(fileData.length())
 {
     qDebug() << "CustomDeviceReply::CustomDeviceReply() ";
     setOpenMode(QIODevice::ReadOnly);
 
-    data = QString::fromStdString("div,html{background-color:red;}").toUtf8();
+    //data = QString::fromStdString("div,html{background-color:red;}").toUtf8();
 
-    //QTimer::singleShot(0, this, &QIODevice::readyRead);
-    //QTimer::singleShot(0, this, &QIODevice::readChannelFinished);
+    //emit readyRead();
+
+    QTimer::singleShot(0, this, &QIODevice::readyRead);
+    QTimer::singleShot(0, this, &QIODevice::readChannelFinished);
 }
+CustomDeviceReply::~CustomDeviceReply()
+{
+    qDebug() << "CustomDeviceReply::~CustomDeviceReply()";
+}
+
+void CustomDeviceReply::close()
+{
+    qDebug() << "CustomDeviceReply::close()";
+    QIODevice::close(); deleteLater();
+}
+
 
 qint64 CustomDeviceReply::bytesAvailable() const
 {
-    qDebug() << "CustomDeviceReply::bytesAvailable() = " << data.length() + QIODevice::bytesAvailable();
+    qDebug() << "CustomDeviceReply::bytesAvailable() = ";// << data.length() + QIODevice::bytesAvailable();
     return data.length() + QIODevice::bytesAvailable();
 }
 
