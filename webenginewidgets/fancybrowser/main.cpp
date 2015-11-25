@@ -41,18 +41,27 @@
 #include <QtWidgets>
 #include "mainwindow.h"
 #include <qtwebenginewidgetsglobal.h>
+#include <QDebug>
 
 int main(int argc, char * argv[])
 {
     QApplication app(argc, argv);
 
+    qDebug() << "App path : " << qApp->applicationDirPath();
+
     QUrl url;
     if (argc > 1)
+    {
         url = QUrl::fromUserInput(argv[1]);
+    }
     else
-        url = QUrl("E:/work/html/empl/styles-conference/index.html");
+    {
+        QUrl path = QUrl(qApp->applicationDirPath() + "/../../fancybrowser/html/index.html");
+        url = path;
+        //url = QUrl("E:/work/html/empl/styles-conference/index.html");
         //url = QUrl("E:/work/html/empl/styles-conference/index.html");
         //url = QUrl("http://www.google.com/ncr");
+    }
     MainWindow *browser = new MainWindow(url);
     browser->show();
     return app.exec();
