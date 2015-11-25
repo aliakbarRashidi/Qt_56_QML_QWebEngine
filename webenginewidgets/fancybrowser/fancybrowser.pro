@@ -4,13 +4,15 @@ HEADERS =   mainwindow.h \
     custompage.h \
     customurlrequestinterceptor.h \
     customurlschemehandler.h \
-    customurlrequestjob.h
+    customurlrequestjob.h \
+    customdevicereply.h
 SOURCES =   main.cpp \
             mainwindow.cpp \
     custompage.cpp \
     customurlrequestinterceptor.cpp \
     customurlschemehandler.cpp \
-    customurlrequestjob.cpp
+    customurlrequestjob.cpp \
+    customdevicereply.cpp
 RESOURCES = jquery.qrc
 
 # install

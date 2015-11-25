@@ -85,8 +85,11 @@ MainWindow::MainWindow(const QUrl& url)
 
 
     weProfile->setRequestInterceptor(urlRequestInterceptor);
-    weProfile->removeAllUrlSchemeHandlers();
-    QByteArray scheme = QString::fromStdString("file").toUtf8();
+    //weProfile->removeAllUrlSchemeHandlers();
+    QByteArray scheme = QString::fromStdString("asd").toUtf8();
+
+    qDebug() << "*** set scheme = " << scheme.constData();
+
     weProfile->installUrlSchemeHandler(scheme, urlSchemeHandler);
 
     CustomPage *myPage = new CustomPage(weProfile, this);
