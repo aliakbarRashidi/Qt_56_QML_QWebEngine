@@ -8,6 +8,7 @@ CustomDeviceReply::CustomDeviceReply(QByteArray &fileData)
 {
     qDebug() << "CustomDeviceReply::CustomDeviceReply() ";
     setOpenMode(QIODevice::ReadOnly);
+    //setOpenMode(QIODevice::Text);
 
     //data = QString::fromStdString("div,html{background-color:red;}").toUtf8();
 
