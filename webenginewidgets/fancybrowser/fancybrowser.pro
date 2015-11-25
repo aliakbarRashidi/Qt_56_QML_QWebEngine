@@ -1,3 +1,4 @@
+TEMPLATE = app
 QT      +=  webenginewidgets
 
 HEADERS =   mainwindow.h \

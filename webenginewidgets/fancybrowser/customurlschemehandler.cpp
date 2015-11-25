@@ -22,7 +22,7 @@ void CustomUrlSchemeHandler::requestStarted(QWebEngineUrlRequestJob *request)
 
     QByteArray arr = QString::fromStdString("div,html{background-color:red;}").toUtf8();
     QBuffer *buffer = new QBuffer(&arr);
-    buffer->open(QIODevice::WriteOnly);
+    buffer->open(QIODevice::ReadOnly);
     request->reply(mimeType.toLatin1(), buffer);
 
     return;

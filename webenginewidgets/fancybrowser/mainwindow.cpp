@@ -97,6 +97,23 @@ MainWindow::MainWindow(const QUrl& url)
 
 //! [2]
     view = new QWebEngineView(this);
+
+    auto* webSettings = view->settings();
+    webSettings->setAttribute(QWebEngineSettings::AutoLoadImages, true);
+    webSettings->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+    webSettings->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, false);
+    webSettings->setAttribute(QWebEngineSettings::JavascriptCanAccessClipboard, true);
+    webSettings->setAttribute(QWebEngineSettings::LinksIncludedInFocusChain, false);
+    webSettings->setAttribute(QWebEngineSettings::LocalStorageEnabled, true);
+    webSettings->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
+    webSettings->setAttribute(QWebEngineSettings::XSSAuditingEnabled, true);
+    webSettings->setAttribute(QWebEngineSettings::SpatialNavigationEnabled, true);
+    webSettings->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, true);
+    webSettings->setAttribute(QWebEngineSettings::HyperlinkAuditingEnabled, true);
+    webSettings->setAttribute(QWebEngineSettings::ScrollAnimatorEnabled, true);
+    webSettings->setAttribute(QWebEngineSettings::ErrorPageEnabled, true);
+
+
     view->setPage(myPage);
 
     view->load(url);
