@@ -18,12 +18,16 @@ void CustomUrlSchemeHandler::requestStarted(QWebEngineUrlRequestJob *request)
     const QString mimeType = mt.name();
     qDebug() << "CustomUrlSchemeHandler::requestStarted -->>> mimeType= " << mimeType;
     //QIODevice *reply = new CustomDeviceReply(QString::fromStdString("div,html{background-color:red;}").toUtf8());
-    //request->reply(mimeType.toLatin1(), reply);
+    QIODevice *reply = new CustomDeviceReply(QString::fromStdString("<html><body>Hello world</body></html>").toUtf8());
+    request->reply(mimeType.toLatin1(), reply);
 
-    QByteArray arr = QString::fromStdString("div,html{background-color:red;}").toUtf8();
-    QBuffer *buffer = new QBuffer(&arr);
-    buffer->open(QIODevice::ReadOnly);
-    request->reply(mimeType.toLatin1(), buffer);
+    //QByteArray arr = QString::fromStdString("div,html{background-color:red;}").toUtf8();
+    //QByteArray arr = QString::fromStdString("<html><body>Hello world</body></html>").toUtf8();
+    //QBuffer *buffer = new QBuffer(&arr, this);
+    //buffer->open(QIODevice::ReadOnly);
+    //request->reply(mimeType.toLatin1(), buffer);
+
+    //request->redirect(QUrl("E:/work/html/empl/styles-conference/assets/stylesheets/main2.css"));
 
     return;
 }

@@ -56,7 +56,7 @@ int main(int argc, char * argv[])
     }
     else
     {
-        QUrl path = QUrl(qApp->applicationDirPath() + "/../../fancybrowser/html/index.html");
+        QUrl path = QUrl("asd:///" + qApp->applicationDirPath() + "/../../fancybrowser/html/index.html");
         url = path;
         //url = QUrl("E:/work/html/empl/styles-conference/index.html");
         //url = QUrl("E:/work/html/empl/styles-conference/index.html");

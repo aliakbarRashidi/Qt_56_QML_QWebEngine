@@ -28,5 +28,5 @@ bool CustomUrlRequestInterceptor::interceptRequest(QWebEngineUrlRequestInfo &inf
         info.redirect(QUrl("e:/work/qt/QWebEngineTest/html/video_ger.mp4"));
     }
 
-    return true;
+    return false;
 }
